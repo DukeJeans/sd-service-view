@@ -1,19 +1,11 @@
-Hello {{city}}, {{1+1}}
-
-@if(isLoggedIn) {
-    <p>Welcome back, Friend!</p>
-} @else {
-    <p>Please log in.</p>
-}
-
-@for (iteratedOperatingSystem of operatingSystems; track iteratedOperatingSystem.id) {
-    <p>{{iteratedOperatingSystem.name}}</p>
-}
-
-@for (iteratedUser of users; track iteratedUser.id) {
-    <p>{{iteratedUser.name}}</p>
-}
-
 <section>
-    <app-test-user-app />
+    <h1>Schwent Detailing, LLC</h1>
 </section>
+<br>
+
+<!-- <img class="home-logo" alt="Schwent Detailing Logo, 1650px" [src]="primaryLogoURL"/> -->
+
+<!-- <button 
+    (click)="greet()" 
+    (mouseover)="onButtonMouseOver()"
+    (mouseleave)="onButtonLeave()">{{buttonText}}</button> -->
