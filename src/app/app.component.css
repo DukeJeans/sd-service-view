@@ -1,3 +1,6 @@
 :host {
-    color: #a144eb;
+    font: 1.2em "Roboto", sans-serif;
+}
+.home-logo {
+    width: 100%
 }
