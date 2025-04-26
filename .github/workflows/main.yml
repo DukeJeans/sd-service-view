@@ -19,6 +19,7 @@ jobs:
         run: npm ci
       - name: Create environment.ts
         run: |
+          mkdir -p src/environments
           echo "export const environment = {" > src/environments/environment.ts
           echo "  firebase: {" >> src/environments/environment.ts
           echo "    projectId: '${{ secrets.PROJECT_ID }}'," >> src/environments/environment.ts
