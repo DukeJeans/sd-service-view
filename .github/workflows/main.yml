@@ -38,5 +38,5 @@ jobs:
         with:
           args: deploy --only hosting
           cwd: ${{ github.workspace }}/dist/sd-service-view-app/browser
-          firebaseKey: ${{ secrets.FIREBASE_DEPLOY_TOKEN_DEV }}
+          firebaseKey: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
           projectId: ${{ secrets.PROJECT_ID }}
