@@ -18,11 +18,11 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Build Angular app (dev)
-        run: npm run build --configuration=development --base-href /
+        run: npm run build --
       - name: Deploy to Firebase Hosting
         uses: w9jds/firebase-action@v2.0.0
         with:
           args: deploy --only hosting
-          cwd: ${{ github.workspace }}/dist/sd-service-view-app
+          cwd: ${{ github.workspace }}/dist/sd-service-view-app/browser
           firebaseKey: ${{ secrets.FIREBASE_DEPLOY_TOKEN_DEV }}
           projectId: ${{ secrets.PROJECT_ID }}
