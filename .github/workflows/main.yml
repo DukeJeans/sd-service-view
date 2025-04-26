@@ -1,0 +1,41 @@
+name: Angular CI
+
+on:
+  push:
+    branches: [ trunk ]
+  pull_request:
+    branches: [ trunk ]
+    
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - name: Install Dependencies
+        run: npm ci
+      - name: Create environment.ts
+        run: |
+          mkdir -p src/environments
+          echo "export const environment = {" > src/environments/environment.ts
+          echo "  firebase: {" >> src/environments/environment.ts
+          echo "    projectId: '${{ secrets.PROJECT_ID }}'," >> src/environments/environment.ts
+          echo "    appId: '${{ secrets.FIREBASE_APP_ID }}.firebaseapp.com'," >> src/environments/environment.ts
+          echo "    storageBucket: '${{ secrets.FIREBASE_STORAGE_BUCKET }}'," >> src/environments/environment.ts
+          echo "    apiKey: '${{ secrets.FIREBASE_API_KEY }}.appspot.com'," >> src/environments/environment.ts
+          echo "    authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'," >> src/environments/environment.ts
+          echo "    messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}'," >> src/environments/environment.ts
+          echo "    measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'" >> src/environments/environment.ts
+          echo "  }" >> src/environments/environment.ts
+          echo "};" >> src/environments/environment.ts
+      - name: Build Angular app (dev)
+        run: npm run build --
+      - name: Deploy to Firebase Hosting
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
