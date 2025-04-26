@@ -35,7 +35,7 @@ jobs:
         run: npm run build --
       - name: Deploy to Firebase Hosting
         uses: w9jds/firebase-action@master
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
         with:
           args: deploy --only hosting
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
