@@ -39,3 +39,4 @@ jobs:
           args: deploy --only hosting --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.ADC }}
