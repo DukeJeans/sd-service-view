@@ -26,4 +26,10 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('Schwent Detailing, LLC');
   });
+
+  it('should successfully realize the logo image', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.primaryLogoURL).toEqual('https://storage.googleapis.com/sdlcc-assets/primaryLogo-1650.png');
+  });
 });
