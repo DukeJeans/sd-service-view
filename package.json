@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=production",
+    "build": "ng build --configuration=production && npm run test",
     "push": "ng build && firebase deploy --only hosting",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --code-coverage=true --watch=false --browsers=ChromeHeadless"
